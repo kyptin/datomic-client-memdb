@@ -1,3 +1,5 @@
+_(Forked from [this repo](https://github.com/ComputeSoftware/datomic-client-memdb) to push [an artifact](https://clojars.org/datomic-client-memdb) to Clojars.)_
+
 # datomic-client-memdb
 
 [![CircleCI](https://circleci.com/gh/ComputeSoftware/datomic-client-memdb.svg?style=svg)](https://circleci.com/gh/ComputeSoftware/datomic-client-memdb)
