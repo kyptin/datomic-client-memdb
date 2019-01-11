@@ -1,4 +1,4 @@
-_(Forked from [this repo](https://github.com/ComputeSoftware/datomic-client-memdb) to push [an artifact](https://clojars.org/datomic-client-memdb) to Clojars.)_
+_(Forked from [this repo](https://github.com/ComputeSoftware/datomic-client-memdb) to push [an artifact](https://clojars.org/datomic-client-memdb) to Clojars. Note: before publishing, ensure version in pom.xml matches version in Makefile.)_
 
 # datomic-client-memdb
 
