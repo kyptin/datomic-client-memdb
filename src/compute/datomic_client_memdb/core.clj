@@ -1,6 +1,7 @@
 (ns compute.datomic-client-memdb.core
   (:require
     [datomic.client.api :as client]
+    [datomic.client.api.protocols :as client-proto]
     [datomic.client.api.impl :as client-impl]
     [datomic.api :as peer])
   (:import (java.io Closeable)))
@@ -19,7 +20,7 @@
   (str "datomic:mem://" db-name))
 
 (deftype LocalDb [db db-name]
-  client/Db
+  client-proto/Db
   (as-of [_ time-point]
     (LocalDb. (peer/as-of db time-point) db-name))
   (datoms [_ arg-map]
@@ -29,7 +30,7 @@
   (history [_]
     (LocalDb. (peer/history db) db-name))
   (index-range [_ arg-map]
-    (peer/index-range _ (:attrid arg-map) (:start arg-map) (:end arg-map)))
+    (peer/index-range db (:attrid arg-map) (:start arg-map) (:end arg-map)))
   (pull [this arg-map]
     (client/pull this (:selector arg-map) (:eid arg-map)))
   (pull [_ selector eid]
@@ -59,7 +60,7 @@
 
 
 (deftype LocalConnection [conn db-name]
-  client/Connection
+  client-proto/Connection
   (db [_]
     (LocalDb. (peer/db conn) db-name))
 
@@ -81,7 +82,7 @@
 
 
 (defrecord Client [db-lookup client-arg-map]
-  client/Client
+  client-proto/Client
   (list-databases [_ _]
     (or (keys @db-lookup) '()))
 
